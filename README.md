@@ -1,2 +1,2 @@
 # Almacen La Elegancia
-Pagina Web utilizando Entity Framework y conexion a base de datos SQL Server
+Pagina Web utilizando Entity Framework y conexión a base de datos SQL Server
