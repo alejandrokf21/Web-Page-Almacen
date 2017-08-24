@@ -1,0 +1,50 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.master.cs" Inherits="AlmacenLE.Master" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Almacen La ELegancia</title>    
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">       
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+   <header>
+           <div class="container-fluid">       
+            <nav class="navbar navbar-default navbar-fixed-top">
+              <div class="container">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                  </button>
+                  <a class="navbar-brand LogoImage" href="Index.aspx"><img src="css/images/La Elegancia.png"/></a>
+                </div>
+                 <div id="navbar" class="navbar-collapse collapse">
+                  <ul class="nav navbar-nav navbar-right">           
+        
+                    <li><a href="Registration.aspx"><span class="glyphicon glyphicon glyphicon-user"> REGISTRARSE</a></li>
+                    <li><a href="Login.aspx"><span class="glyphicon glyphicon-log-in"></span> INICIAR SESION</a></li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          </div>     
+       </header> 
+
+
+    <asp:ContentPlaceHolder ID="body" runat="server">
+        
+    </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>

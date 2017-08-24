@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8799ce47aabc4a8daf9a2865fb698555" Name="Diagram1">
+        <EntityTypeShape EntityType="AlmacenModel.Bodega" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenModel.Cliente" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenModel.DetalleFactura" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenModel.DetalleRegistro" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenModel.EstadoFactura" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenModel.EstadoProducto" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenModel.Factura" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenModel.InOut" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenModel.Producto" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenModel.RolUsuario" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenModel.Usuario" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="AlmacenModel.FK_idBodega" ManuallyRouted="false" />
+        <AssociationConnector Association="AlmacenModel.FK_idBodegaProducto" ManuallyRouted="false" />
+        <AssociationConnector Association="AlmacenModel.FK_codClienteFact" ManuallyRouted="false" />
+        <AssociationConnector Association="AlmacenModel.FK_codProductoDetalle" ManuallyRouted="false" />
+        <AssociationConnector Association="AlmacenModel.FK_numFactura" ManuallyRouted="false" />
+        <AssociationConnector Association="AlmacenModel.FK_IDTIPO" ManuallyRouted="false" />
+        <AssociationConnector Association="AlmacenModel.FK_idEstado" ManuallyRouted="false" />
+        <AssociationConnector Association="AlmacenModel.FK_codEstado" ManuallyRouted="false" />
+        <AssociationConnector Association="AlmacenModel.FK_idUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="AlmacenModel.FK_idRol" ManuallyRouted="false" />
+        <AssociationConnector Association="AlmacenModel.FK_idSuperior" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

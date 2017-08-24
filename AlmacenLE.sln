@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlmacenLE", "AlmacenLE\AlmacenLE.csproj", "{CCA62D87-4D8D-4416-ADD7-BAC4424D16FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datos", "Datos\Datos.csproj", "{4AEBA092-32B7-4E07-BD8E-1D8468DF9FE5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CCA62D87-4D8D-4416-ADD7-BAC4424D16FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCA62D87-4D8D-4416-ADD7-BAC4424D16FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCA62D87-4D8D-4416-ADD7-BAC4424D16FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCA62D87-4D8D-4416-ADD7-BAC4424D16FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AEBA092-32B7-4E07-BD8E-1D8468DF9FE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AEBA092-32B7-4E07-BD8E-1D8468DF9FE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AEBA092-32B7-4E07-BD8E-1D8468DF9FE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AEBA092-32B7-4E07-BD8E-1D8468DF9FE5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

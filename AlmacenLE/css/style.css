@@ -1,0 +1,62 @@
+﻿.LogoImage{
+            padding-top:0px;
+            padding-bottom:0px;
+            padding-left:0px;
+            font-size:10px;
+        }
+        
+       .navbar {
+          margin-bottom: 0;
+          background-color: #4b4487;
+          z-index: 9999;
+          border: 0;
+          font-size: 12px !important;
+          line-height: 1.42857143 !important;
+          letter-spacing: 2px;
+          border-radius: 0.1px;
+          font-family: Montserrat, sans-serif;
+      }
+      .navbar li a, .navbar .navbar-brand {
+          color: #fff !important;
+          background-color: #4b4487;
+      }
+
+      .navbar ul li a, .navbar .navbar-brand {
+          color: #fff !important;
+          background-color: #4b4487;
+      }
+
+      .spanId{
+          color: #fff !important;
+          margin-bottom: 0;
+          background-color: #4b4487;
+          z-index: 9999;
+          border: 0;
+          font-size: 12px !important;
+          line-height: 1.42857143 !important;
+          letter-spacing: 2px;
+          border-radius: 0.1px;
+          font-family: Montserrat, sans-serif;
+
+      }
+      .navbar-nav li a:hover, .navbar-nav li.active a {
+          color: #4b4487 !important;
+          background-color: #fff !important;
+      }
+      .navbar-default .navbar-toggle {
+          border-color: transparent;
+          color: #fff !important;
+      }
+      .containerReg{
+          padding-top:80px;
+      }
+
+      .gridTable{
+        border: none;
+      }
+      /*.carousel-caption {
+        color: #fff !important;
+        background-color:#bcbca0;
+      }*/
+
+/* enable absolute positioning */

@@ -1,0 +1,508 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AlmacenModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="FN_MostraFactura_Result">
+    <Property Name="fecha" Type="DateTime" />
+    <Property Name="numFactura" Type="Int32" Nullable="false" />
+    <Property Name="numSerie" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="total" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="nit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="cantidad" Type="Int32" />
+    <Property Name="detalle" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="precio" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="subtotal" Type="Decimal" Precision="19" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="fnTableColumnInfo_Result">
+    <Property Name="sColumnName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="nColumnID" Type="Int16" />
+    <Property Name="bPrimaryKeyColumn" Type="Boolean" />
+    <Property Name="nAlternateType" Type="Int32" Nullable="false" />
+    <Property Name="nColumnLength" Type="Int16" Nullable="false" />
+    <Property Name="nColumnPrecision" Type="Int16" />
+    <Property Name="nColumnScale" Type="Int32" />
+    <Property Name="IsNullable" Type="Int32" />
+    <Property Name="IsIdentity" Type="Int32" />
+    <Property Name="sTypeName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="sDefaultValue" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+  </ComplexType>
+  <EntityType Name="Bodega">
+    <Key>
+      <PropertyRef Name="idBodega" />
+    </Key>
+    <Property Name="idBodega" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="municipio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DetalleRegistro" Relationship="Self.FK_idBodega" FromRole="Bodega" ToRole="DetalleRegistro" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK_idBodegaProducto" FromRole="Bodega" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="nit" />
+    </Key>
+    <Property Name="nit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Factura" Relationship="Self.FK_codClienteFact" FromRole="Cliente" ToRole="Factura" />
+  </EntityType>
+  <EntityType Name="DetalleFactura">
+    <Key>
+      <PropertyRef Name="idDetalleFact" />
+    </Key>
+    <Property Name="idDetalleFact" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="numSerie" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="numFactura" Type="Int32" />
+    <Property Name="codProducto" Type="Int32" />
+    <Property Name="cantidad" Type="Int32" />
+    <Property Name="precio" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="nombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="subtotal" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK_codProductoDetalle" FromRole="DetalleFactura" ToRole="Producto" />
+    <NavigationProperty Name="Factura" Relationship="Self.FK_numFactura" FromRole="DetalleFactura" ToRole="Factura" />
+  </EntityType>
+  <EntityType Name="DetalleRegistro">
+    <Key>
+      <PropertyRef Name="idDetalleReg" />
+    </Key>
+    <Property Name="idDetalleReg" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idBodega" Type="Int32" />
+    <Property Name="fecha" Type="DateTime" Precision="0" />
+    <Property Name="tipo" Type="Int32" />
+    <Property Name="codProducto" Type="Int32" />
+    <Property Name="cantidad" Type="Int32" />
+    <NavigationProperty Name="Bodega" Relationship="Self.FK_idBodega" FromRole="DetalleRegistro" ToRole="Bodega" />
+    <NavigationProperty Name="InOut" Relationship="Self.FK_IDTIPO" FromRole="DetalleRegistro" ToRole="InOut" />
+  </EntityType>
+  <EntityType Name="EstadoFactura">
+    <Key>
+      <PropertyRef Name="idEstado" />
+    </Key>
+    <Property Name="idEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Factura" Relationship="Self.FK_idEstado" FromRole="EstadoFactura" ToRole="Factura" />
+  </EntityType>
+  <EntityType Name="EstadoProducto">
+    <Key>
+      <PropertyRef Name="idEstado" />
+    </Key>
+    <Property Name="idEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK_codEstado" FromRole="EstadoProducto" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="Factura">
+    <Key>
+      <PropertyRef Name="numFactura" />
+    </Key>
+    <Property Name="numFactura" Type="Int32" Nullable="false" />
+    <Property Name="numSerie" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="nit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="fecha" Type="DateTime" Precision="0" />
+    <Property Name="idUsuario" Type="Int32" />
+    <Property Name="total" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="idEstado" Type="Int32" />
+    <NavigationProperty Name="Cliente" Relationship="Self.FK_codClienteFact" FromRole="Factura" ToRole="Cliente" />
+    <NavigationProperty Name="DetalleFactura" Relationship="Self.FK_numFactura" FromRole="Factura" ToRole="DetalleFactura" />
+    <NavigationProperty Name="EstadoFactura" Relationship="Self.FK_idEstado" FromRole="Factura" ToRole="EstadoFactura" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_idUsuario" FromRole="Factura" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="InOut">
+    <Key>
+      <PropertyRef Name="idTipo" />
+    </Key>
+    <Property Name="idTipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DetalleRegistro" Relationship="Self.FK_IDTIPO" FromRole="InOut" ToRole="DetalleRegistro" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="codProducto" />
+    </Key>
+    <Property Name="codProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sku" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="cantidad" Type="Int32" />
+    <Property Name="precioCosto" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="precioVenta" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="idBodega" Type="Int32" />
+    <Property Name="idEstado" Type="Int32" />
+    <Property Name="cantDaniados" Type="Int32" />
+    <NavigationProperty Name="Bodega" Relationship="Self.FK_idBodegaProducto" FromRole="Producto" ToRole="Bodega" />
+    <NavigationProperty Name="DetalleFactura" Relationship="Self.FK_codProductoDetalle" FromRole="Producto" ToRole="DetalleFactura" />
+    <NavigationProperty Name="EstadoProducto" Relationship="Self.FK_codEstado" FromRole="Producto" ToRole="EstadoProducto" />
+  </EntityType>
+  <EntityType Name="RolUsuario">
+    <Key>
+      <PropertyRef Name="idRol" />
+    </Key>
+    <Property Name="idRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_idRol" FromRole="RolUsuario" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idRol" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="usuario1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="contrasenia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="correo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idSuperior" Type="Int32" />
+    <NavigationProperty Name="Factura" Relationship="Self.FK_idUsuario" FromRole="Usuario" ToRole="Factura" />
+    <NavigationProperty Name="RolUsuario" Relationship="Self.FK_idRol" FromRole="Usuario" ToRole="RolUsuario" />
+    <NavigationProperty Name="Usuario11" Relationship="Self.FK_idSuperior" FromRole="Usuario" ToRole="Usuario1" />
+    <NavigationProperty Name="Usuario2" Relationship="Self.FK_idSuperior" FromRole="Usuario1" ToRole="Usuario" />
+  </EntityType>
+  <Association Name="FK_idBodega">
+    <End Role="Bodega" Type="Self.Bodega" Multiplicity="0..1" />
+    <End Role="DetalleRegistro" Type="Self.DetalleRegistro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bodega">
+        <PropertyRef Name="idBodega" />
+      </Principal>
+      <Dependent Role="DetalleRegistro">
+        <PropertyRef Name="idBodega" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_idBodegaProducto">
+    <End Role="Bodega" Type="Self.Bodega" Multiplicity="0..1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bodega">
+        <PropertyRef Name="idBodega" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="idBodega" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_codClienteFact">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+    <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="nit" />
+      </Principal>
+      <Dependent Role="Factura">
+        <PropertyRef Name="nit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_codProductoDetalle">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+    <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="codProducto" />
+      </Principal>
+      <Dependent Role="DetalleFactura">
+        <PropertyRef Name="codProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_numFactura">
+    <End Role="Factura" Type="Self.Factura" Multiplicity="0..1" />
+    <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Factura">
+        <PropertyRef Name="numFactura" />
+      </Principal>
+      <Dependent Role="DetalleFactura">
+        <PropertyRef Name="numFactura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IDTIPO">
+    <End Role="InOut" Type="Self.InOut" Multiplicity="0..1" />
+    <End Role="DetalleRegistro" Type="Self.DetalleRegistro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InOut">
+        <PropertyRef Name="idTipo" />
+      </Principal>
+      <Dependent Role="DetalleRegistro">
+        <PropertyRef Name="tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_idEstado">
+    <End Role="EstadoFactura" Type="Self.EstadoFactura" Multiplicity="0..1" />
+    <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EstadoFactura">
+        <PropertyRef Name="idEstado" />
+      </Principal>
+      <Dependent Role="Factura">
+        <PropertyRef Name="idEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_codEstado">
+    <End Role="EstadoProducto" Type="Self.EstadoProducto" Multiplicity="0..1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EstadoProducto">
+        <PropertyRef Name="idEstado" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="idEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_idUsuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="Factura">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_idRol">
+    <End Role="RolUsuario" Type="Self.RolUsuario" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RolUsuario">
+        <PropertyRef Name="idRol" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="idRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_idSuperior">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="Usuario1" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="Usuario1">
+        <PropertyRef Name="idSuperior" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AlmacenEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bodega" EntityType="Self.Bodega" />
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+    <EntitySet Name="DetalleFactura" EntityType="Self.DetalleFactura" />
+    <EntitySet Name="DetalleRegistro" EntityType="Self.DetalleRegistro" />
+    <EntitySet Name="EstadoFactura" EntityType="Self.EstadoFactura" />
+    <EntitySet Name="EstadoProducto" EntityType="Self.EstadoProducto" />
+    <EntitySet Name="Factura" EntityType="Self.Factura" />
+    <EntitySet Name="InOut" EntityType="Self.InOut" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" />
+    <EntitySet Name="RolUsuario" EntityType="Self.RolUsuario" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <AssociationSet Name="FK_idBodega" Association="Self.FK_idBodega">
+      <End Role="Bodega" EntitySet="Bodega" />
+      <End Role="DetalleRegistro" EntitySet="DetalleRegistro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_idBodegaProducto" Association="Self.FK_idBodegaProducto">
+      <End Role="Bodega" EntitySet="Bodega" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_codClienteFact" Association="Self.FK_codClienteFact">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Factura" EntitySet="Factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_codProductoDetalle" Association="Self.FK_codProductoDetalle">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_numFactura" Association="Self.FK_numFactura">
+      <End Role="Factura" EntitySet="Factura" />
+      <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IDTIPO" Association="Self.FK_IDTIPO">
+      <End Role="InOut" EntitySet="InOut" />
+      <End Role="DetalleRegistro" EntitySet="DetalleRegistro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_idEstado" Association="Self.FK_idEstado">
+      <End Role="EstadoFactura" EntitySet="EstadoFactura" />
+      <End Role="Factura" EntitySet="Factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_codEstado" Association="Self.FK_codEstado">
+      <End Role="EstadoProducto" EntitySet="EstadoProducto" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_idUsuario" Association="Self.FK_idUsuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Factura" EntitySet="Factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_idRol" Association="Self.FK_idRol">
+      <End Role="RolUsuario" EntitySet="RolUsuario" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_idSuperior" Association="Self.FK_idSuperior">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Usuario1" EntitySet="Usuario" />
+    </AssociationSet>
+    <FunctionImport Name="FN_MostraFactura" IsComposable="true" ReturnType="Collection(AlmacenModel.FN_MostraFactura_Result)">
+      <Parameter Name="numFact" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="fnTableColumnInfo" IsComposable="true" ReturnType="Collection(AlmacenModel.fnTableColumnInfo_Result)">
+      <Parameter Name="sTableName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Delete_Cliente">
+      <Parameter Name="nit" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Insert_Cliente">
+      <Parameter Name="nit" Mode="In" Type="String" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="direccion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="pr__SYS_MakeDeleteRecordProc">
+      <Parameter Name="sTableName" Mode="In" Type="String" />
+      <Parameter Name="bExecute" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="pr__SYS_MakeInsertRecordProc">
+      <Parameter Name="sTableName" Mode="In" Type="String" />
+      <Parameter Name="bExecute" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="pr__SYS_MakeSelectRecordProc">
+      <Parameter Name="sTableName" Mode="In" Type="String" />
+      <Parameter Name="bExecute" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="pr__SYS_MakeUpdateRecordProc">
+      <Parameter Name="sTableName" Mode="In" Type="String" />
+      <Parameter Name="bExecute" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="PR_ClienteDelete_Web">
+      <Parameter Name="nit" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PR_ClienteInsert_Web">
+      <Parameter Name="nit" Mode="In" Type="String" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="direccion" Mode="In" Type="String" />
+      <Parameter Name="telefono" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PR_ClienteUpdate_Web">
+      <Parameter Name="nit" Mode="In" Type="String" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="direccion" Mode="In" Type="String" />
+      <Parameter Name="telefono" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="prApp_Bodega_Delete">
+      <Parameter Name="idBodega" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="prApp_Bodega_Insert">
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="direccion" Mode="In" Type="String" />
+      <Parameter Name="municipio" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="prApp_Bodega_Select" ReturnType="Collection(AlmacenModel.prApp_Bodega_Select_Result)">
+      <Parameter Name="idBodega" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="prApp_Bodega_Update">
+      <Parameter Name="idBodega" Mode="In" Type="Int32" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="direccion" Mode="In" Type="String" />
+      <Parameter Name="municipio" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="prApp_Producto_Delete">
+      <Parameter Name="codProducto" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="prApp_Producto_Insert">
+      <Parameter Name="sku" Mode="In" Type="String" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="precioCosto" Mode="In" Type="Decimal" />
+      <Parameter Name="precioVenta" Mode="In" Type="Decimal" />
+      <Parameter Name="idBodega" Mode="In" Type="Int32" />
+      <Parameter Name="idEstado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="prApp_Producto_Update">
+      <Parameter Name="codProducto" Mode="In" Type="Int32" />
+      <Parameter Name="sku" Mode="In" Type="String" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="precioCosto" Mode="In" Type="Decimal" />
+      <Parameter Name="precioVenta" Mode="In" Type="Decimal" />
+      <Parameter Name="idBodega" Mode="In" Type="Int32" />
+      <Parameter Name="idEstado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="prApp_Usuario_Insert">
+      <Parameter Name="idRol" Mode="In" Type="Int32" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="usuario" Mode="In" Type="String" />
+      <Parameter Name="contrasenia" Mode="In" Type="String" />
+      <Parameter Name="correo" Mode="In" Type="String" />
+      <Parameter Name="idSuperior" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="prApp_Usuario_Update">
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="idRol" Mode="In" Type="Int32" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="usuario" Mode="In" Type="String" />
+      <Parameter Name="contrasenia" Mode="In" Type="String" />
+      <Parameter Name="correo" Mode="In" Type="String" />
+      <Parameter Name="idSuperior" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(AlmacenModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(AlmacenModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="prApp_Bodega_Select_Result">
+    <Property Type="Int32" Name="idBodega" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="true" />
+    <Property Type="String" Name="direccion" Nullable="true" />
+    <Property Type="String" Name="municipio" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>
