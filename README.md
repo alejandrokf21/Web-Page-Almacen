@@ -1,5 +1,6 @@
 # Almacen La Elegancia
-Página Web utilizando Entity Framework y conexión a base de datos SQL Server
+Página Web utilizando Entity Framework y conexión a base de datos SQL Server.
+Esta es una aplicacion web para llevar el control de inventario, clientes, factura, realizado en el progama Talento Digital.
 
 ## Vista Previa
 ### Inicio
