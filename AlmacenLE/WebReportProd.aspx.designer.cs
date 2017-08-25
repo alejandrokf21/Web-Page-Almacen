@@ -10,7 +10,7 @@
 namespace AlmacenLE {
     
     
-    public partial class WebReportProd {
+    public partial class WebReportPP {
         
         /// <summary>
         /// ScriptManager1 control.

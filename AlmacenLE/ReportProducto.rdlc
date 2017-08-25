@@ -599,47 +599,10 @@
   <Width>7.64255in</Width>
   <Page>
     <PageHeader>
-      <Height>2.54cm</Height>
+      <Height>3.45433cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
-        <Textbox Name="Textbox1">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>  Almacen La Elegancia  </Value>
-                  <Style>
-                    <FontSize>14pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.59062cm</Top>
-          <Left>5.92021cm</Left>
-          <Height>0.75875cm</Height>
-          <Width>5.91312cm</Width>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <BottomBorder>
-              <Color>MidnightBlue</Color>
-              <Style>Solid</Style>
-              <Width>2pt</Width>
-            </BottomBorder>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
         <Textbox Name="Textbox19">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
@@ -661,11 +624,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox19</rd:DefaultName>
-          <Top>1.76361cm</Top>
+          <Top>2.16049cm</Top>
           <Left>1.07834cm</Left>
           <Height>0.6cm</Height>
           <Width>4.69604cm</Width>
-          <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -676,6 +638,33 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
+        <Image Name="Image2">
+          <Source>Embedded</Source>
+          <Value>AlmacenLaelegancia1</Value>
+          <Sizing>FitProportional</Sizing>
+          <Top>0.26864cm</Top>
+          <Left>7.10395cm</Left>
+          <Height>2.00271cm</Height>
+          <Width>5.20417cm</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </Image>
+        <Line Name="Line1">
+          <Top>3.27794cm</Top>
+          <Left>0.49953cm</Left>
+          <Height>0cm</Height>
+          <Width>18.16333cm</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <Border>
+              <Style>Solid</Style>
+            </Border>
+          </Style>
+        </Line>
       </ReportItems>
       <Style>
         <Border>
@@ -756,6 +745,13 @@
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
+  <EmbeddedImages>
+    <EmbeddedImage Name="AlmacenLaelegancia1">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>7f7851f9-a8cd-46fa-ae26-1a808b5c5845</rd:ReportID>
 </Report>
